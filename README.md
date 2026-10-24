@@ -9,7 +9,7 @@ Linux 서버 구축 및 운영·관리 역량을 기르기 위한 개인 실습 
 
 ## 2. 실습 환경
 - 가상화 프로그램: VMware Workstation Player
-- 운영체제: CentOS 7 DVD ISO
+- 운영체제: CentOS 8 DVD ISO
 
 ## 3. 프로젝트 목표
 
@@ -27,3 +27,7 @@ Linux 서버 구축 및 운영·관리 역량을 기르기 위한 개인 실습 
 ## 5. 문제 상황
 CentOS 7에서 IP 설정과 네트워크 연결 문제
 yum 저장소와 RPM 패키지 의존성 문제
+
+## 6. 실습 내용
+RAID 구성과 문제발생시 각 RAID별 차이와 복구
+
