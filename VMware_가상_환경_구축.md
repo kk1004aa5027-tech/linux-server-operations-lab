@@ -48,6 +48,7 @@ ipconfig /all
 ### ① 설정 파일 생성 및 편집
 
 ```bash
+cd  /etc/yum.repos.d/
 gedit This.repo
 ```
 
