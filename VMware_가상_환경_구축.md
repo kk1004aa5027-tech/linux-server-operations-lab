@@ -35,24 +35,25 @@ ipconfig /all
 | WinClient | 동적 IP | Windows 클라이언트 |
 
 
+## 2. Server 가상 환경 구축
 
-## 1-3. CentOS Repository 설정
+## 2-1. CentOS Repository 설정
 
 ### 설정 목적
 - CentOS 패키지 저장소 지정
 - BaseOS, AppStream 등 저장소 경로 설정
 - DNF를 통한 패키지 설치 및 업데이트 환경 구성
 
-**실습 환경:** Server 
 
-### ① 설정 파일 생성 및 편집
+
+## 2-2. 설정 파일 생성 및 편집
 
 ```bash
 cd  /etc/yum.repos.d/
 gedit This.repo
 ```
 
-### ② 저장소 설정
+### 2-3. 저장소 설정
 
 ```ini
 [BaseOS]
@@ -167,7 +168,7 @@ dnf -y install firewall-config
 
 
 
-## 2-1. Server(B) 가상 네트워크 환경 설정
+## 3-1. Server(B) 가상 네트워크 환경 설정
 
 ### ① 필수 패키지 설치
 
@@ -212,7 +213,7 @@ SELINUX=disabled
 ```
 
 
-## 3-1. Client 가상 네트워크 환경 설정
+## 4-1. Client 가상 네트워크 환경 설정
 
 ### ① root 계정 로그인 제한
 
