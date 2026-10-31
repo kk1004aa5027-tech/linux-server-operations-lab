@@ -154,6 +154,9 @@ SELINUX=disabled
 
 방화벽 설정 및 관리를 위한 GUI 도구인 `firewall-config`를 설치한다.
 
+
+## 2. Server(B) 가상 환경 구축
+
 ```bash
 dnf -y install firewall-config
 ```
@@ -161,4 +164,106 @@ dnf -y install firewall-config
 **설정 목적**
 - 방화벽 설정 및 관리 도구 설치
 - GUI 환경에서 방화벽 규칙 확인 및 설정
+
+
+
+## 2-1. Server(B) 가상 네트워크 환경 설정
+
+### ① 필수 패키지 설치
+
+네트워크 설정 및 파일 다운로드 등에 필요한 패키지를 설치한다.
+
+```bash
+dnf -y install bind-utils net-tools wget unzip bzip2
+```
+
+### ② 네트워크 설정
+
+네트워크 설정 파일을 열어 고정 IP를 설정한다.
+
+```bash
+cd /etc/sysconfig/network-scripts/
+vi ifcfg-ens160
+```
+
+**네트워크 설정 내용**
+
+| 항목 | 설정값 | 설명 |
+|:---|:---|:---|
+| BOOTPROTO | `none` | 고정 IP 사용 |
+| IPADDR | `192.168.111.200` | 서버 IP 주소 |
+| NETMASK | `255.255.255.0` | 서브넷 마스크 |
+| GATEWAY | `192.168.111.2` | 기본 게이트웨이 |
+| DNS1 | `192.168.111.2` | DNS 서버 주소 |
+
+### ③ SELinux 설정 변경
+
+
+실습 환경의 원활한 진행을 위해 SELinux를 비활성화한다.
+
+```bash
+vi /etc/sysconfig/selinux
+```
+
+**설정 변경**
+
+```ini
+SELINUX=disabled
+```
+
+
+## 3-1. Client 가상 네트워크 환경 설정
+
+### ① root 계정 로그인 제한
+
+GDM 로그인 과정에서 root 계정으로 로그인하지 못하도록 PAM 설정을 변경한다.
+
+**설정 파일 수정**
+
+```bash
+gedit /etc/pam.d/gdm-password
+```
+
+**파일에 다음 내용 추가**
+
+```bash
+auth required pam_succeed_if.so user != root quiet
+```
+
+### ② 자동 로그인 설정
+
+CentOS 부팅 시 `centos` 계정으로 자동 로그인되도록 GDM 설정을 변경한다.
+
+**root 계정으로 전환**
+
+```bash
+su -
+```
+
+**설정 파일 수정**
+
+```bash
+vi /etc/gdm/custom.conf
+```
+
+`[daemon]` 항목 아래에 다음 내용을 추가한다.
+
+```ini
+[daemon]
+AutomaticLoginEnable=True
+AutomaticLogin=centos
+```
+
+### ③ 시스템 재부팅
+
+변경한 설정을 적용하기 위해 시스템을 재부팅한다.
+
+```bash
+reboot
+```
+
+
+
+
+
 
