@@ -35,12 +35,23 @@ ipconfig /all
 | WinClient | 동적 IP | Windows 클라이언트 |
 
 
+
 ## 1-3. CentOS Repository 설정
 
 ### 설정 목적
-- CentOS 패키지 저장소(Repository) 지정
-- BaseOS, AppStream 등 저장소별 패키지 다운로드 경로 설정
+- CentOS 패키지 저장소 지정
+- BaseOS, AppStream 등 저장소 경로 설정
 - DNF를 통한 패키지 설치 및 업데이트 환경 구성
+
+**실습 환경:** Server 
+
+### ① 설정 파일 생성 및 편집
+
+```bash
+gedit This.repo
+```
+
+### ② 저장소 설정
 
 ```ini
 [BaseOS]
@@ -73,6 +84,9 @@ baseurl=https://archive.kernel.org/centos-vault/8.0.1905/PowerTools/x86_64/os/
         http://linuxsoft.cern.ch/centos-vault/8.0.1905/PowerTools/x86_64/os/
 gpgcheck=0
 ```
+
+
+
 
 ---
 
