@@ -45,15 +45,14 @@ ipconfig /all
 - DNF를 통한 패키지 설치 및 업데이트 환경 구성
 
 
-
-## 2-2. 설정 파일 생성 및 편집
+설정 파일 생성 및 편집
 
 ```bash
 cd  /etc/yum.repos.d/
 gedit This.repo
 ```
 
-### 2-3. 저장소 설정
+저장소 설정 내용
 
 ```ini
 [BaseOS]
@@ -92,9 +91,9 @@ gpgcheck=0
 
 ---
 
-## 1-4. 네트워크 설정
+## 2-2. 네트워크 설정
 
-### ① 네트워크 설정 파일 수정
+###  네트워크 설정 파일 수정
 
 네트워크 인터페이스 설정 파일을 열어 IP 주소 및 네트워크 정보를 변경한다.
 
@@ -122,7 +121,7 @@ DNS1="192.168.111.2"
 | GATEWAY | `192.168.111.2` | 기본 게이트웨이 |
 | DNS1 | `192.168.111.2` | DNS 서버 주소 |
 
-### ② 네트워크 설정 적용
+###  네트워크 설정 적용
 
 변경한 네트워크 설정을 적용하기 위해 연결을 재시작한다.
 
@@ -131,7 +130,7 @@ nmcli connection down ens160
 nmcli connection up ens160
 ```
 
-### ③ SELinux 설정 변경
+### 2-3 SELinux 설정 변경
 
 SELinux(Security-Enhanced Linux)는 리눅스 시스템의 접근 제어를 강화하는 보안 기능이다.
 
@@ -151,12 +150,12 @@ SELINUX=disabled
 
 > **참고:** SELinux를 비활성화하면 보안 수준이 낮아질 수 있으므로 학습용 환경에서만 적용하고, 실제 운영 환경에서는 신중하게 설정해야 한다.
 
-### ④ 방화벽 설정 도구 설치
+### 2-4 방화벽 설정 도구 설치
 
 방화벽 설정 및 관리를 위한 GUI 도구인 `firewall-config`를 설치한다.
 
 
-## 2. Server(B) 가상 환경 구축
+## 3. Server(B) 가상 환경 구축
 
 ```bash
 dnf -y install firewall-config
@@ -168,9 +167,9 @@ dnf -y install firewall-config
 
 
 
-## 3-1. Server(B) 가상 네트워크 환경 설정
+## 3. Server(B) 가상 네트워크 환경 설정
 
-### ① 필수 패키지 설치
+### 3-1 필수 패키지 설치
 
 네트워크 설정 및 파일 다운로드 등에 필요한 패키지를 설치한다.
 
@@ -178,7 +177,7 @@ dnf -y install firewall-config
 dnf -y install bind-utils net-tools wget unzip bzip2
 ```
 
-### ② 네트워크 설정
+### 3-2 네트워크 설정
 
 네트워크 설정 파일을 열어 고정 IP를 설정한다.
 
@@ -197,7 +196,7 @@ vi ifcfg-ens160
 | GATEWAY | `192.168.111.2` | 기본 게이트웨이 |
 | DNS1 | `192.168.111.2` | DNS 서버 주소 |
 
-### ③ SELinux 설정 변경
+### 3-3 SELinux 설정 변경
 
 
 실습 환경의 원활한 진행을 위해 SELinux를 비활성화한다.
@@ -213,9 +212,9 @@ SELINUX=disabled
 ```
 
 
-## 4-1. Client 가상 네트워크 환경 설정
+## 4. Client 가상 네트워크 환경 설정
 
-### ① root 계정 로그인 제한
+### 4-1 root 계정 로그인 제한
 
 GDM 로그인 과정에서 root 계정으로 로그인하지 못하도록 PAM 설정을 변경한다.
 
@@ -231,7 +230,7 @@ gedit /etc/pam.d/gdm-password
 auth required pam_succeed_if.so user != root quiet
 ```
 
-### ② 자동 로그인 설정
+### 4-2 자동 로그인 설정
 
 CentOS 부팅 시 `centos` 계정으로 자동 로그인되도록 GDM 설정을 변경한다.
 
@@ -255,7 +254,7 @@ AutomaticLoginEnable=True
 AutomaticLogin=centos
 ```
 
-### ③ 시스템 재부팅
+### 4-3 시스템 재부팅
 
 변경한 설정을 적용하기 위해 시스템을 재부팅한다.
 
