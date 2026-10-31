@@ -37,9 +37,9 @@ ipconfig /all
 
 ## 2. Server 가상 환경 구축
 
-## 2-1. CentOS Repository 설정
+### 2-1. CentOS Repository 설정
 
-### 설정 목적
+***설정 목적***
 - CentOS 패키지 저장소 지정
 - BaseOS, AppStream 등 저장소 경로 설정
 - DNF를 통한 패키지 설치 및 업데이트 환경 구성
