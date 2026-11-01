@@ -32,7 +32,7 @@ su -c 'mv wall.png   /boot/grub2'
 su -c 'gedit /etc/default/grub'
 ```
 
-## GRUB 설정 파일 수정
+### GRUB 설정 파일 수정
 
 ```
 #GRUB_TERNUBAK OUTPUT="console"
