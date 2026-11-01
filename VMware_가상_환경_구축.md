@@ -155,8 +155,6 @@ SELINUX=disabled
 방화벽 설정 및 관리를 위한 GUI 도구인 `firewall-config`를 설치한다.
 
 
-## 3. Server(B) 가상 환경 구축
-
 ```bash
 dnf -y install firewall-config
 ```
